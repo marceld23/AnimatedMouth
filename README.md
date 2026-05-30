@@ -77,16 +77,6 @@ Declared in [platformio.ini](platformio.ini) and fetched automatically:
 - [`m5stack/M5Unified`](https://github.com/m5stack/M5Unified) — display, mic, board init
 - [`kosme/arduinoFFT`](https://github.com/kosme/arduinoFFT) — frequency-band analysis
 
-## Roadmap
-
-The project is built in stages of increasing fidelity:
-
-- **Stage 1 — "Volume Mouth"**: loudness only → mouth open/closed. Fast win.
-- **Stage 2 — "Viseme Rules"** *(current)*: loudness + frequency bands → 5–6
-  mouth shapes. The sweet spot for the Core2.
-- **Stage 3 — "Tiny Viseme Classifier"** *(future)*: a small int8 TinyML model
-  (MFCC → CNN, TensorFlow Lite Micro) for sharper A/O/I/S separation.
-
 ## Tuning
 
 The classifier thresholds live in [src/VisemeClassifier.cpp](src/VisemeClassifier.cpp)
