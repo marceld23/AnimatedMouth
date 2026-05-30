@@ -52,6 +52,28 @@ screen so the mouth animates fluidly instead of flickering.
 | `TEETH_S`     | strong high-frequency noise              | narrow, teeth (S/F)  |
 | `SMALL`       | quiet but above silence                  | slightly open        |
 
+## Controls & settings
+
+The mouth view is deliberately clean — no on-screen buttons. The three Core2
+touch buttons below the display are used like this:
+
+| Where        | Button       | Action                                  |
+| ------------ | ------------ | --------------------------------------- |
+| Mouth view   | **B** (middle) | Open the settings menu                |
+| Settings     | **A**        | Decrease the selected value             |
+| Settings     | **C**        | Increase the selected value             |
+| Settings     | **B** (short)| Move to the next setting                |
+| Settings     | **B** (hold) | Save & return to the mouth              |
+
+The settings menu lets you adjust:
+
+- **Sensitivity** — volume gain applied before classification. Higher = the
+  mouth reacts to quieter sounds.
+- **Brightness** — display backlight (applied live as you change it).
+
+It also shows the current **battery level**. Settings are stored in NVS
+(ESP32 Preferences), so they survive a reboot.
+
 ## Build & flash
 
 This is a [PlatformIO](https://platformio.org/) project.
@@ -92,11 +114,13 @@ The most useful knobs:
 
 ```
 src/
-  main.cpp            orchestration: setup + loop
+  main.cpp            orchestration: mode switch + loop
   AudioAnalyzer.*     mic capture + RMS + FFT band features
   Viseme.h           Viseme enum + AudioFeatures struct
   VisemeClassifier.* rule-based feature → viseme mapping
   MouthRenderer.*     parametric mouth drawing + smoothing (sprite, flicker-free)
+  Settings.*          user settings + NVS persistence
+  SettingsMenu.*      touch-button settings screen (sensitivity, brightness, battery)
 ```
 
 ## License
